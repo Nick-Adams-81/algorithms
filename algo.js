@@ -53,9 +53,7 @@ for(let i = 0; i < 10; i++)
     console.log(fib(i));
 }
 
-// ----- SORT ----- //
-
-
+// ----- SORTS ----- //
 
 // bubble sort
 function bubbleSort(array){
@@ -72,6 +70,54 @@ function bubbleSort(array){
 }
 
 console.log(bubbleSort([1, 2, 4, 8, 123, 345, 43, 32, 5000, 2700, 15, 325]));
+
+// Merge sort
+function mergeSort(data){
+    if(data.length < 2){
+        return data;
+    }
+    let midPoint = Math.round(data.length / 2);
+    return merge(
+          mergeSort(data.slice(0 , midPoint)),
+          mergeSort(data.slice(midPoint))
+    );
+}
+
+function merge(left, right){
+    let out = []
+    while(left.length && right.length){
+        out.push(left[0] < right[0] ? left.shift() : right.shift())
+    }
+    while(left.length){
+        out.push(left.shift());
+    }
+    while(right.length){
+        out.push(right.shift());
+    }
+    return out;
+}
+
+console.log(mergeSort([5, 10, 50, 2, 4, 100, 125, 522, 17, 1, 900]))
+
+// Quick sort
+function quickSort(data){
+    if(data.length < 1){
+        return []
+    }
+
+    let left = [];
+    let right = [];
+    let pivot = data[0];
+
+    for(var i = 0; i < data.length; i++){
+        if(data[i] < pivot){
+            left.push(data[i]);
+        } else {
+             right.push(data[i]);
+        }
+    }
+    return [].concat(quickSort(left), pivot, quickSort(right));
+}
 
 
 
