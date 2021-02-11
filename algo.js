@@ -1,68 +1,54 @@
 // ------ ALGORITHMS!!! ----- //
 
-
-// basic for loops //
-
-
-let arr = ["Nick", "walt", "Ernie"];
+let names = ["Nick", "Ernie", "Walt", "Jenna"]
 
 //looping forward through an array
-for(let i = 0; i < arr.length; i++)
-{
-    console.log(arr[i]);
+
+for(let i = 0; i < names.length; i++){
+    console.log(names[i])
 }
 
-//looping bnackward through an array
-let array = ["uno", "dos", "tres"];
+//looping backward through an array
 
-for(let i = array.length - 1; i >= 0; i--)
-{
-    console.log(array[i]);
+for(let i = names.length - 1; i >=0; i--){
+    console.log(names[i])
 }
 
-// basic while loop
+// while loop
+
 let a = 1;
-
-while(a <=5)
-{
-    console.log(a);
-    a++;
+while(a <= 5){
+    console.log(a)
+    a++
 }
-
-
 
 // --- FIBONACCI SEQUENCE  --- //
 
 // Creating the fibonacci(fib) function
-function fib(n)
-{
+function fib(n){
     let a = 0;
     let b = 1;
-    for(let i = 0; i< n; i ++)
-    {
+    for(let i = 0; i < n; i++){
         let x = a;
         a = b;
-        b = b + x;
+        b = x + b;
     }
-    return a;
+    return a
 }
-
-// calling the fib function in a for loop to log the sequence
-for(let i = 0; i < 10; i++)
-{
-    console.log(fib(i));
+for(let i = 0; i < 10; i++){
+    console.log(fib(i))
 }
 
 // ----- SORTS ----- //
 
 // bubble sort
-function bubbleSort(array){
-    for(let i = 0; i < array.length -1; i++){
-        for(let j = 0; j < array.length -1 -i; j++){
-            if(array[j] > array[j + 1]){
+function bubbleSort(array) {
+    for (let i = 0; i < array.length - 1; i++) {
+        for (let j = 0; j < array.length - 1 - i; j++) {
+            if (array[j] > array[j + 1]) {
                 const x = array[j];
                 array[j] = array[j + 1];
-                array[j + 1 ] = x
+                array[j + 1] = x
             }
         }
     }
@@ -72,36 +58,37 @@ function bubbleSort(array){
 console.log(bubbleSort([1, 2, 4, 8, 123, 345, 43, 32, 5000, 2700, 15, 325]));
 
 // Merge sort
-function mergeSort(data){
-    if(data.length < 2){
+function mergeSort(data) {
+    if (data.length < 2) {
         return data;
     }
     let midPoint = Math.round(data.length / 2);
     return merge(
-          mergeSort(data.slice(0 , midPoint)),
-          mergeSort(data.slice(midPoint))
+        mergeSort(data.slice(0, midPoint)),
+        mergeSort(data.slice(midPoint))
     );
 }
 
-function merge(left, right){
+function merge(left, right) {
     let out = []
-    while(left.length && right.length){
+    while (left.length && right.length) {
         out.push(left[0] < right[0] ? left.shift() : right.shift())
     }
-    while(left.length){
+    while (left.length) {
         out.push(left.shift());
     }
-    while(right.length){
+    while (right.length) {
         out.push(right.shift());
     }
     return out;
 }
+//console.log(mergeSort([5, 10, 50, 2, 4, 100, 125, 522, 17, 1, 900]))
 
-console.log(mergeSort([5, 10, 50, 2, 4, 100, 125, 522, 17, 1, 900]))
+
 
 // Quick sort
-function quickSort(data){
-    if(data.length < 1){
+function quickSort(data) {
+    if (data.length < 1) {
         return []
     }
 
@@ -109,15 +96,17 @@ function quickSort(data){
     let right = [];
     let pivot = data[0];
 
-    for(var i = 0; i < data.length; i++){
-        if(data[i] < pivot){
+    for (var i = 0; i < data.length; i++) {
+        if (data[i] < pivot) {
             left.push(data[i]);
         } else {
-             right.push(data[i]);
+            right.push(data[i]);
         }
     }
     return [].concat(quickSort(left), pivot, quickSort(right));
 }
+
+console.log(quickSort([1, 5, 12, 4, 100, 7, 56, 42, 200]))
 
 
 
