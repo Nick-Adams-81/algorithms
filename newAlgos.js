@@ -1,6 +1,6 @@
 nums = [1, 2, 3, 6, 4]
 
-function solution(nums) {
+function findNums(nums) {
     const posNums = nums.filter(num => num > 0);
     const set = newSet();
     let max = 0;
