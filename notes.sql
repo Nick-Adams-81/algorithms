@@ -10,7 +10,8 @@ CREATE TABLE worker (
     last_name VARCHAR(30),
     salary INT(256),
     workplace_id INT,
-    PRIMARY KEY(worker_id)
+    PRIMARY KEY(worker_id),
+    FOREIGN KEY(workplace_id) REFERENCES workplace(workplace_id)
 );
 
 CREATE TABLE workplace (
@@ -21,7 +22,7 @@ CREATE TABLE workplace (
 
 INSERT INTO worker (some_data_id, first_name, last_name, salary, workplace_id)
 VALUES (1, "Nick", "Adams", 25000, 1),
-       (2, "John", "Doe", 125000, 2),
+       (2, "John", "Doe", 125000, 4),
        (3, "Mike", "Smith", 3000, 2),
        (4, "Jane", "Doe", 2500000, 3),
        (5, "Walter", "Zimmerman", 123456, 1);
@@ -48,7 +49,19 @@ FROM workers ORDER BY last_name ASC;
 SELECT * 
 FROM workers where salary > 10000;
 
+SELECT * FROM worker
+WHERE first_name LIKE  "%r";
 
+SELECT * FROM worker
+WHERE first_name NOT LIKE  "%r";
+
+SELECT * FROM worker
+WHERE last_name IN("Adams");
+
+CREATE INDEX aIndex
+ON worker(first_name);
+
+DROP INDEX aIndex ON worker;
 
 UPDATE worker
 SET salary = 8000000
